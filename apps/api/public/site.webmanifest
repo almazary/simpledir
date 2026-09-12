@@ -1,21 +1,25 @@
 {
   "name": "SimpleDir",
   "short_name": "SimpleDir",
-  "description": "Desktop file manager for Cloudflare R2",
-  "start_url": "/",
+  "description": "Manage Cloudflare R2 files from the web or desktop",
+  "start_url": "/app",
+  "scope": "/app",
   "display": "standalone",
-  "background_color": "#07070a",
-  "theme_color": "#07070a",
+  "orientation": "any",
+  "background_color": "#0b0b0f",
+  "theme_color": "#0b0b0f",
   "icons": [
     {
       "src": "/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }

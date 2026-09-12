@@ -45,9 +45,10 @@ export default function Home() {
           </div>
           <nav className="lp-nav-links">
             <a href="#features">Features</a>
+            <a href="#web">Web app</a>
             <a href="#download">Download</a>
-            <Link href="/verify" className="lp-btn lp-btn-ghost">
-              Verify email
+            <Link href="/app" className="lp-btn lp-btn-ghost">
+              Open app
             </Link>
           </nav>
         </header>
@@ -64,11 +65,11 @@ export default function Home() {
               file — termasuk drag &amp; drop dari luar aplikasi.
             </p>
             <div className="lp-actions">
-              <a className="lp-btn lp-btn-primary" href="#download">
-                Download app
-              </a>
-              <a className="lp-btn lp-btn-ghost" href="#features">
-                Lihat fitur
+              <Link className="lp-btn lp-btn-primary" href="/app">
+                Open web app
+              </Link>
+              <a className="lp-btn lp-btn-ghost" href="#download">
+                Download desktop
               </a>
             </div>
           </div>
@@ -118,12 +119,30 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="lp-section" id="download">
-          <h2>Download SimpleDir</h2>
+        <section className="lp-section" id="web">
+          <h2>Pakai di browser (PWA)</h2>
           <p className="lp-section-lead">
-            Installer Mac &amp; Windows akan tersedia di sini. Sementara build
-            publik disiapkan, kamu tetap bisa menjalankan app dari source di
-            GitHub.
+            SimpleDir juga tersedia sebagai Progressive Web App di domain yang
+            sama. Fiturnya setara desktop: login, credential R2, browse, upload
+            (termasuk drag &amp; drop), search, dan profile. Di Chrome/Edge kamu
+            bisa <strong>Install app</strong>; di iPhone/iPad lewat Share → Add
+            to Home Screen.
+          </p>
+          <div className="lp-actions">
+            <Link className="lp-btn lp-btn-primary" href="/app">
+              Open https://www.simpledir.my.id/app
+            </Link>
+            <a className="lp-btn lp-btn-ghost" href="#download">
+              Prefer desktop?
+            </a>
+          </div>
+        </section>
+
+        <section className="lp-section" id="download">
+          <h2>Download desktop</h2>
+          <p className="lp-section-lead">
+            Butuh window native Mac/Windows? Unduh installer di bawah, atau pakai
+            web app jika ingin tanpa install.
           </p>
           <div className="lp-download">
             <div className="lp-download-card">
