@@ -25,6 +25,18 @@ export function withHandler(
         message.includes("is not set") ||
         message.includes("ENCRYPTION_KEY") ||
         message.includes("JWT_SECRET");
+      const missingSchema =
+        /relation .* does not exist/i.test(message) ||
+        /failed to parse postgresql error/i.test(message) ||
+        message.includes("42P01");
+      if (missingSchema) {
+        return error(
+          "Database schema is not ready. Run migrations (apps/api/drizzle/0000_init.sql) on your Neon database.",
+          503,
+          origin,
+          { code: "SCHEMA_MISSING" },
+        );
+      }
       return error(isConfig ? message : "Internal server error", 500, origin);
     }
   };
