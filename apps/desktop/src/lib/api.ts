@@ -28,9 +28,10 @@ export type R2Entry = {
 
 function friendlyNetworkError(err: unknown): Error {
   if (err instanceof TypeError) {
-    return new Error(
-      "Load failed — cannot reach API. Is `pnpm dev:api` running, and is the API base URL correct?",
-    );
+    const hint = import.meta.env.DEV
+      ? "Is `pnpm dev:api` running, and is the API base URL correct?"
+      : "Check your internet connection, or try again in a moment.";
+    return new Error(`Cannot reach API. ${hint}`);
   }
   if (err instanceof Error) return err;
   return new Error("Unknown error");

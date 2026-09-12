@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
-import { getApiBaseUrl, setApiBaseUrl } from "../lib/config";
+import { getApiBaseUrl, isDevBuild, setApiBaseUrl } from "../lib/config";
 
 export function LoginPage() {
   const { login } = useAuth();
@@ -11,12 +11,15 @@ export function LoginPage() {
   const [apiUrl, setApiUrl] = useState(getApiBaseUrl());
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const showApiSettings = isDevBuild();
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setBusy(true);
     setError(null);
-    setApiBaseUrl(apiUrl);
+    if (showApiSettings) {
+      setApiBaseUrl(apiUrl);
+    }
     try {
       await login(email, password);
       navigate("/", { replace: true });
@@ -53,17 +56,19 @@ export function LoginPage() {
             autoComplete="current-password"
           />
         </label>
-        <details>
-          <summary>API settings</summary>
-          <label>
-            API base URL
-            <input
-              value={apiUrl}
-              onChange={(e) => setApiUrl(e.target.value)}
-              placeholder="http://localhost:3001"
-            />
-          </label>
-        </details>
+        {showApiSettings && (
+          <details>
+            <summary>API settings</summary>
+            <label>
+              API base URL
+              <input
+                value={apiUrl}
+                onChange={(e) => setApiUrl(e.target.value)}
+                placeholder="http://localhost:3001"
+              />
+            </label>
+          </details>
+        )}
         <button type="submit" disabled={busy}>
           {busy ? "Signing in…" : "Sign in"}
         </button>

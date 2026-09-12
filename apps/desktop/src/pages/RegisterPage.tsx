@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
-import { getApiBaseUrl, setApiBaseUrl } from "../lib/config";
+import { getApiBaseUrl, isDevBuild, setApiBaseUrl } from "../lib/config";
 
 export function RegisterPage() {
   const { register } = useAuth();
@@ -11,13 +11,16 @@ export function RegisterPage() {
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const showApiSettings = isDevBuild();
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setBusy(true);
     setError(null);
     setMessage(null);
-    setApiBaseUrl(apiUrl);
+    if (showApiSettings) {
+      setApiBaseUrl(apiUrl);
+    }
     try {
       const msg = await register(email, password);
       setMessage(msg);
@@ -56,17 +59,19 @@ export function RegisterPage() {
             autoComplete="new-password"
           />
         </label>
-        <details>
-          <summary>API settings</summary>
-          <label>
-            API base URL
-            <input
-              value={apiUrl}
-              onChange={(e) => setApiUrl(e.target.value)}
-              placeholder="http://localhost:3001"
-            />
-          </label>
-        </details>
+        {showApiSettings && (
+          <details>
+            <summary>API settings</summary>
+            <label>
+              API base URL
+              <input
+                value={apiUrl}
+                onChange={(e) => setApiUrl(e.target.value)}
+                placeholder="http://localhost:3001"
+              />
+            </label>
+          </details>
+        )}
         <button type="submit" disabled={busy || !!message}>
           {busy ? "Creating…" : "Register"}
         </button>
