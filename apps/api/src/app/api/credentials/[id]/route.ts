@@ -55,7 +55,7 @@ export const GET = withHandler(async (req, ctx) => {
     return error(authResult.error, authResult.status, origin);
   }
 
-  const { id } = (await ctx?.params) ?? {};
+  const { id } = await ctx.params;
   if (!id) return error("Missing id", 400, origin);
 
   const row = await findOwned(authResult.auth.userId, id);
@@ -73,7 +73,7 @@ export const PATCH = withHandler(async (req, ctx) => {
     return error(authResult.error, authResult.status, origin);
   }
 
-  const { id } = (await ctx?.params) ?? {};
+  const { id } = await ctx.params;
   if (!id) return error("Missing id", 400, origin);
 
   const existing = await findOwned(authResult.auth.userId, id);
@@ -167,7 +167,7 @@ export const DELETE = withHandler(async (req, ctx) => {
     return error(authResult.error, authResult.status, origin);
   }
 
-  const { id } = (await ctx?.params) ?? {};
+  const { id } = await ctx.params;
   if (!id) return error("Missing id", 400, origin);
 
   const existing = await findOwned(authResult.auth.userId, id);

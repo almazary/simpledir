@@ -1,5 +1,9 @@
 import { error, optionsResponse } from "./http";
 
+export type AppRouteContext = {
+  params: Promise<Record<string, string>>;
+};
+
 export function withOptions() {
   return function OPTIONS(req: Request) {
     return optionsResponse(req.headers.get("origin"));
@@ -7,12 +11,9 @@ export function withOptions() {
 }
 
 export function withHandler(
-  handler: (req: Request, ctx?: { params: Promise<Record<string, string>> }) => Promise<Response>,
+  handler: (req: Request, ctx: AppRouteContext) => Promise<Response>,
 ) {
-  return async (
-    req: Request,
-    ctx?: { params: Promise<Record<string, string>> },
-  ) => {
+  return async (req: Request, ctx: AppRouteContext) => {
     try {
       return await handler(req, ctx);
     } catch (err) {
@@ -24,11 +25,7 @@ export function withHandler(
         message.includes("is not set") ||
         message.includes("ENCRYPTION_KEY") ||
         message.includes("JWT_SECRET");
-      return error(
-        isConfig ? message : "Internal server error",
-        isConfig ? 500 : 500,
-        origin,
-      );
+      return error(isConfig ? message : "Internal server error", 500, origin);
     }
   };
 }

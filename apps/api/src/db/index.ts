@@ -4,7 +4,6 @@ import * as schema from "./schema";
 
 declare global {
   // Reuse pool across hot reloads in Next.js dev
-  // eslint-disable-next-line no-var
   var __simpledirPgPool: Pool | undefined;
 }
 
