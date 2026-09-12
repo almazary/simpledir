@@ -336,6 +336,69 @@ label {
 }
 
 @media (max-width: 720px) {
+  .page {
+    padding: 0.85rem;
+  }
+
+  .auth-shell {
+    padding: 1rem;
+    align-items: flex-start;
+    padding-top: 1.5rem;
+  }
+
+  .card {
+    width: 100%;
+    padding: 1.15rem;
+  }
+
+  .topbar {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .topbar h1 {
+    font-size: 1.25rem;
+  }
+
+  .topbar .row,
+  .topbar .row.wrap {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .topbar .row button,
+  .topbar .row .button {
+    flex: 1 1 calc(50% - 0.35rem);
+  }
+
+  .cred-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-bar {
+    flex-wrap: wrap;
+  }
+
+  .search-bar input {
+    flex: 1 1 100%;
+  }
+
+  .search-bar button {
+    flex: 1;
+  }
+
+  .inline-form {
+    flex-wrap: wrap;
+  }
+
+  .inline-form input {
+    flex: 1 1 100%;
+  }
+
   .stats-bar {
     flex-direction: column;
     align-items: stretch;
@@ -361,8 +424,33 @@ label {
     border-bottom: none;
   }
 
+  .stats-value {
+    white-space: normal;
+    font-size: 0.88rem;
+  }
+
   .stats-action {
     width: 100%;
+  }
+
+  .file-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .file-table {
+    min-width: 520px;
+  }
+
+  .file-table th,
+  .file-table td {
+    padding: 0.55rem 0.65rem;
+    font-size: 0.85rem;
+  }
+
+  .row.end {
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
 }
 

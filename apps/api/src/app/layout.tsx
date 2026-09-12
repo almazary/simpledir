@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SimpleDir — Desktop file manager for Cloudflare R2",
+  title: "SimpleDir — Kelola file Cloudflare R2",
   description:
-    "Kelola file Cloudflare R2 dari aplikasi desktop Mac & Windows. Multi-credential, drag & drop upload, search, dan credential terenkripsi.",
-  metadataBase: new URL("https://simpledir.my.id"),
+    "Kelola file Cloudflare R2 dari web app (PWA) atau desktop Mac & Windows. Multi-credential, drag & drop, pencarian, dan credential terenkripsi.",
+  metadataBase: new URL("https://www.simpledir.my.id"),
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -19,10 +19,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "SimpleDir",
     description:
-      "Desktop file manager for Cloudflare R2 — Mac & Windows.",
-    url: "https://simpledir.my.id",
+      "Kelola file Cloudflare R2 dari web (PWA) atau desktop Mac & Windows.",
+    url: "https://www.simpledir.my.id",
     siteName: "SimpleDir",
     type: "website",
+    locale: "id_ID",
     images: [{ url: "/logo.png", width: 1024, height: 1024, alt: "SimpleDir" }],
   },
 };

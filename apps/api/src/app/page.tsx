@@ -2,28 +2,28 @@ import Link from "next/link";
 
 const features = [
   {
-    title: "Cloudflare R2 native",
-    body: "Browse, upload, download, and delete objects directly against your own R2 buckets.",
+    title: "Langsung ke Cloudflare R2",
+    body: "Lihat, unggah, unduh, dan hapus file langsung di bucket R2 milikmu.",
   },
   {
-    title: "Multi-credential labels",
-    body: "Save several R2 credentials with labels, then open only the bucket you need.",
+    title: "Banyak credential berlabel",
+    body: "Simpan beberapa akses R2 dengan label, lalu buka hanya bucket yang kamu butuhkan.",
   },
   {
     title: "Drag & drop upload",
-    body: "Drop files from Finder or Explorer into the desktop window to upload instantly.",
+    body: "Seret file dari Finder/Explorer (desktop) atau dari perangkatmu (web) untuk mengunggah.",
   },
   {
-    title: "Encrypted credentials",
-    body: "Access keys are encrypted at rest on the server and only unlocked after login.",
+    title: "Credential terenkripsi",
+    body: "Access key disimpan terenkripsi di server dan hanya dibuka setelah kamu login.",
   },
   {
-    title: "Search & size tools",
-    body: "Search inside a folder or bucket, and calculate total size on demand.",
+    title: "Pencarian & hitung ukuran",
+    body: "Cari file di folder/bucket, dan hitung total ukuran saat kamu membutuhkannya.",
   },
   {
-    title: "Free-tier friendly",
-    body: "Built around Vercel, Resend, Postgres, and Cloudflare R2 free tiers.",
+    title: "Ramah free tier",
+    body: "Dirancang untuk Vercel, Resend, Postgres, dan Cloudflare R2 di paket gratis.",
   },
 ];
 
@@ -43,33 +43,35 @@ export default function Home() {
             />
             SimpleDir
           </div>
-          <nav className="lp-nav-links">
-            <a href="#features">Features</a>
+          <nav className="lp-nav-links" aria-label="Navigasi utama">
+            <a href="#fitur">Fitur</a>
             <a href="#web">Web app</a>
-            <a href="#download">Download</a>
-            <Link href="/app" className="lp-btn lp-btn-ghost">
-              Open app
+            <a href="#unduh">Unduh</a>
+            <Link href="/app" className="lp-btn lp-btn-ghost lp-nav-cta">
+              Buka app
             </Link>
           </nav>
         </header>
 
         <section className="lp-hero">
           <div>
-            <div className="lp-kicker">Desktop file manager for Cloudflare R2</div>
+            <div className="lp-kicker">
+              Pengelola file Cloudflare R2 — web &amp; desktop
+            </div>
             <h1>
               Kelola file R2 kamu dengan <span>lebih sederhana</span>
             </h1>
             <p className="lp-lead">
-              SimpleDir adalah aplikasi desktop untuk Mac &amp; Windows: login
-              akun, simpan banyak credential R2 berlabel, lalu browse dan upload
-              file — termasuk drag &amp; drop dari luar aplikasi.
+              SimpleDir membantu kamu login, menyimpan banyak credential R2
+              berlabel, lalu mengelola file: unggah, unduh, hapus, cari, dan
+              hitung ukuran — di browser (PWA) atau aplikasi Mac &amp; Windows.
             </p>
             <div className="lp-actions">
               <Link className="lp-btn lp-btn-primary" href="/app">
-                Open web app
+                Buka web app
               </Link>
-              <a className="lp-btn lp-btn-ghost" href="#download">
-                Download desktop
+              <a className="lp-btn lp-btn-ghost" href="#unduh">
+                Unduh desktop
               </a>
             </div>
           </div>
@@ -95,7 +97,7 @@ export default function Home() {
                   <span>248 KB</span>
                 </div>
                 <div className="lp-fake-row">
-                  <strong>📄 notes.txt</strong>
+                  <strong>📄 catatan.txt</strong>
                   <span>2.1 KB</span>
                 </div>
               </div>
@@ -103,11 +105,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="lp-section" id="features">
+        <section className="lp-section" id="fitur">
           <h2>Semua yang kamu butuhkan untuk R2</h2>
           <p className="lp-section-lead">
-            Fokus ke manajemen file, bukan setup rumit. Credential tetap milikmu,
-            app hanya membantu mengelolanya dengan aman.
+            Fokus ke manajemen file, bukan setup rumit. Credential tetap milikmu;
+            SimpleDir hanya membantu mengelolanya dengan aman.
           </p>
           <div className="lp-grid">
             {features.map((feature) => (
@@ -122,51 +124,63 @@ export default function Home() {
         <section className="lp-section" id="web">
           <h2>Pakai di browser (PWA)</h2>
           <p className="lp-section-lead">
-            SimpleDir juga tersedia sebagai Progressive Web App di domain yang
-            sama. Fiturnya setara desktop: login, credential R2, browse, upload
-            (termasuk drag &amp; drop), search, dan profile. Di Chrome/Edge kamu
-            bisa <strong>Install app</strong>; di iPhone/iPad lewat Share → Add
-            to Home Screen.
+            SimpleDir tersedia sebagai Progressive Web App di domain yang sama.
+            Fiturnya setara desktop: login, credential R2, browse, unggah
+            (termasuk drag &amp; drop), pencarian, dan profil.
           </p>
+          <ul className="lp-list">
+            <li>
+              <strong>Chrome / Edge:</strong> buka web app, lalu pilih{" "}
+              <em>Install app</em> di bilah alamat atau menu.
+            </li>
+            <li>
+              <strong>iPhone / iPad:</strong> buka Safari → Bagikan →{" "}
+              <em>Add to Home Screen</em>.
+            </li>
+            <li>
+              <strong>Android:</strong> Chrome biasanya menawarkan{" "}
+              <em>Tambahkan ke layar utama</em>.
+            </li>
+          </ul>
           <div className="lp-actions">
             <Link className="lp-btn lp-btn-primary" href="/app">
-              Open https://www.simpledir.my.id/app
+              Buka web app
             </Link>
-            <a className="lp-btn lp-btn-ghost" href="#download">
-              Prefer desktop?
+            <a className="lp-btn lp-btn-ghost" href="#unduh">
+              Lebih suka desktop?
             </a>
           </div>
         </section>
 
-        <section className="lp-section" id="download">
-          <h2>Download desktop</h2>
+        <section className="lp-section" id="unduh">
+          <h2>Unduh aplikasi desktop</h2>
           <p className="lp-section-lead">
-            Butuh window native Mac/Windows? Unduh installer di bawah, atau pakai
-            web app jika ingin tanpa install.
+            Butuh jendela native di Mac atau Windows? Unduh installer di bawah.
+            Kalau ingin tanpa instalasi, cukup pakai web app.
           </p>
           <div className="lp-download">
             <div className="lp-download-card">
-              <span className="lp-badge">Available</span>
+              <span className="lp-badge">Tersedia</span>
               <h3>macOS (Apple Silicon)</h3>
               <p>
                 Installer <code>.dmg</code> untuk Mac M1/M2/M3/M4. Jika macOS
-                bilang app “damaged”, itu biasanya Gatekeeper — bukan file rusak.
-                Download ulang build terbaru, atau jalankan:{" "}
+                bilang aplikasi “rusak”, itu biasanya Gatekeeper — bukan file
+                rusak. Unduh ulang build terbaru, atau jalankan:{" "}
                 <code>xattr -cr /Applications/SimpleDir.app</code>
               </p>
               <a
                 className="lp-btn lp-btn-primary"
                 href="https://github.com/almazary/simpledir/releases/download/v0.1.0/SimpleDir_0.1.0_aarch64.dmg"
               >
-                Download for Mac
+                Unduh untuk Mac
               </a>
             </div>
             <div className="lp-download-card">
-              <span className="lp-badge lp-badge-soon">Building</span>
+              <span className="lp-badge lp-badge-soon">Menyusul</span>
               <h3>Windows</h3>
               <p>
-                Installer Windows 10/11 sedang di-build lewat GitHub Actions.
-                Cek juga halaman{" "}
+                Installer Windows 10/11 akan muncul di halaman rilis. Pantau
+                status build di{" "}
                 <a
                   href="https://github.com/almazary/simpledir/releases/tag/v0.1.0"
                   style={{ color: "var(--accent)" }}
@@ -183,12 +197,12 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Open releases
+                Buka halaman rilis
               </a>
             </div>
           </div>
           <p className="lp-section-lead" style={{ marginTop: "1.25rem" }}>
-            Source code:{" "}
+            Kode sumber:{" "}
             <a
               href="https://github.com/almazary/simpledir"
               style={{ color: "var(--accent)" }}
@@ -202,7 +216,7 @@ export default function Home() {
 
         <footer className="lp-footer">
           <span>© {new Date().getFullYear()} SimpleDir</span>
-          <span>API aktif di domain yang sama · Auth &amp; credentials aman</span>
+          <span>API di domain yang sama · Auth &amp; credential aman</span>
         </footer>
       </div>
     </div>

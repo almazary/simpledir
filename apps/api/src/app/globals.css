@@ -345,6 +345,22 @@ code {
   color: var(--accent);
 }
 
+.lp-list {
+  margin: 0 0 1.25rem;
+  padding-left: 1.15rem;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 40rem;
+}
+
+.lp-list li {
+  margin-bottom: 0.55rem;
+}
+
+.lp-list strong {
+  color: var(--text);
+}
+
 .lp-footer {
   border-top: 1px solid var(--border);
   padding: 1.5rem 0 2.5rem;
@@ -354,4 +370,76 @@ code {
   flex-wrap: wrap;
   gap: 0.75rem;
   justify-content: space-between;
+}
+
+@media (max-width: 720px) {
+  .lp-wrap {
+    width: min(1080px, calc(100% - 1.25rem));
+  }
+
+  .lp-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+    padding: 1rem 0;
+  }
+
+  .lp-nav-links {
+    flex-wrap: wrap;
+    gap: 0.55rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .lp-nav-cta {
+    width: 100%;
+    margin-top: 0.15rem;
+  }
+
+  .lp-hero {
+    padding: 1.75rem 0 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .lp-hero h1 {
+    font-size: clamp(1.7rem, 8vw, 2.3rem);
+  }
+
+  .lp-lead {
+    font-size: 1rem;
+  }
+
+  .lp-actions {
+    flex-direction: column;
+  }
+
+  .lp-actions .lp-btn {
+    width: 100%;
+  }
+
+  .lp-panel {
+    padding: 0.85rem;
+    border-radius: 18px;
+  }
+
+  .lp-section {
+    padding: 1.75rem 0;
+  }
+
+  .lp-download {
+    grid-template-columns: 1fr;
+  }
+
+  .lp-download-card .lp-btn {
+    width: 100%;
+  }
+
+  .lp-footer {
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-bottom: 2rem;
+  }
+
+  code {
+    word-break: break-all;
+  }
 }
