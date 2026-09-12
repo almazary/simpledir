@@ -130,8 +130,10 @@ export default function Home() {
               <span className="lp-badge">Available</span>
               <h3>macOS (Apple Silicon)</h3>
               <p>
-                Installer <code>.dmg</code> untuk Mac M1/M2/M3/M4. Build belum
-                di-sign: pertama kali buka dengan klik kanan → Open.
+                Installer <code>.dmg</code> untuk Mac M1/M2/M3/M4. Jika macOS
+                bilang app “damaged”, itu biasanya Gatekeeper — bukan file rusak.
+                Download ulang build terbaru, atau jalankan:{" "}
+                <code>xattr -cr /Applications/SimpleDir.app</code>
               </p>
               <a
                 className="lp-btn lp-btn-primary"
