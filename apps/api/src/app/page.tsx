@@ -127,26 +127,43 @@ export default function Home() {
           </p>
           <div className="lp-download">
             <div className="lp-download-card">
-              <span className="lp-badge lp-badge-soon">Coming soon</span>
-              <h3>macOS</h3>
+              <span className="lp-badge">Available</span>
+              <h3>macOS (Apple Silicon)</h3>
               <p>
-                Universal build untuk Apple Silicon &amp; Intel. Akan muncul
-                sebagai file <code>.dmg</code> di halaman ini.
+                Installer <code>.dmg</code> untuk Mac M1/M2/M3/M4. Build belum
+                di-sign: pertama kali buka dengan klik kanan → Open.
               </p>
-              <button className="lp-btn lp-btn-ghost is-disabled" disabled type="button">
+              <a
+                className="lp-btn lp-btn-primary"
+                href="https://github.com/almazary/simpledir/releases/download/v0.1.0/SimpleDir_0.1.0_aarch64.dmg"
+              >
                 Download for Mac
-              </button>
+              </a>
             </div>
             <div className="lp-download-card">
-              <span className="lp-badge lp-badge-soon">Coming soon</span>
+              <span className="lp-badge lp-badge-soon">Building</span>
               <h3>Windows</h3>
               <p>
-                Installer untuk Windows 10/11. Akan muncul sebagai file{" "}
-                <code>.msi</code> / <code>.exe</code> di halaman ini.
+                Installer Windows 10/11 sedang di-build lewat GitHub Actions.
+                Cek juga halaman{" "}
+                <a
+                  href="https://github.com/almazary/simpledir/releases/tag/v0.1.0"
+                  style={{ color: "var(--accent)" }}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Releases
+                </a>
+                .
               </p>
-              <button className="lp-btn lp-btn-ghost is-disabled" disabled type="button">
-                Download for Windows
-              </button>
+              <a
+                className="lp-btn lp-btn-ghost"
+                href="https://github.com/almazary/simpledir/releases/tag/v0.1.0"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open releases
+              </a>
             </div>
           </div>
           <p className="lp-section-lead" style={{ marginTop: "1.25rem" }}>
