@@ -33,7 +33,14 @@ export default function Home() {
       <div className="lp-wrap">
         <header className="lp-nav">
           <div className="lp-brand">
-            <span className="lp-mark">SD</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="lp-logo"
+              src="/logo.png"
+              width={34}
+              height={34}
+              alt="SimpleDir"
+            />
             SimpleDir
           </div>
           <nav className="lp-nav-links">
