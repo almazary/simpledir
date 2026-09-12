@@ -1,4 +1,6 @@
-const DEFAULT_API = "http://localhost:3001";
+const DEFAULT_API = import.meta.env.DEV
+  ? "http://localhost:3001"
+  : "https://simpledir.my.id";
 
 export function getApiBaseUrl(): string {
   return localStorage.getItem("simpledir.apiBaseUrl") ?? DEFAULT_API;
