@@ -176,28 +176,24 @@ export default function Home() {
               </a>
             </div>
             <div className="lp-download-card">
-              <span className="lp-badge lp-badge-soon">Menyusul</span>
-              <h3>Windows</h3>
+              <span className="lp-badge">Tersedia</span>
+              <h3>Windows 10/11</h3>
               <p>
-                Installer Windows 10/11 akan muncul di halaman rilis. Pantau
-                status build di{" "}
-                <a
-                  href="https://github.com/almazary/simpledir/releases/tag/v0.1.0"
-                  style={{ color: "var(--accent)" }}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Releases
-                </a>
-                .
+                Installer <code>.exe</code> (NSIS) untuk Windows 64-bit.
+                Alternatif MSI tersedia di halaman rilis jika dibutuhkan untuk
+                instalasi terkelola.
               </p>
               <a
-                className="lp-btn lp-btn-ghost"
-                href="https://github.com/almazary/simpledir/releases/tag/v0.1.0"
-                target="_blank"
-                rel="noreferrer"
+                className="lp-btn lp-btn-primary"
+                href="https://github.com/almazary/simpledir/releases/download/v0.1.0/SimpleDir_0.1.0_x64-setup.exe"
               >
-                Buka halaman rilis
+                Unduh untuk Windows
+              </a>
+              <a
+                className="lp-btn lp-btn-ghost"
+                href="https://github.com/almazary/simpledir/releases/download/v0.1.0/SimpleDir_0.1.0_x64_en-US.msi"
+              >
+                Unduh MSI
               </a>
             </div>
           </div>
