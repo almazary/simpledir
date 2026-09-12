@@ -14,6 +14,7 @@ export function toUserPublic(user: User): UserPublic {
   return {
     id: user.id,
     email: user.email,
+    name: user.name ?? null,
     status: user.status,
     createdAt: user.createdAt.toISOString(),
   };

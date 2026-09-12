@@ -113,14 +113,22 @@ export function CredentialsPage() {
       <header className="topbar">
         <div>
           <h1>R2 Credentials</h1>
-          <p className="muted">{user?.email}</p>
+          <p className="muted">
+            {user?.name ? `${user.name} · ` : ""}
+            {user?.email}
+          </p>
         </div>
-        <button
-          className="ghost"
-          onClick={() => void logout().then(() => navigate("/login"))}
-        >
-          Sign out
-        </button>
+        <div className="row">
+          <Link className="button ghost" to="/profile">
+            Profile
+          </Link>
+          <button
+            className="ghost"
+            onClick={() => void logout().then(() => navigate("/login"))}
+          >
+            Sign out
+          </button>
+        </div>
       </header>
 
       {error && <div className="banner error">{error}</div>}

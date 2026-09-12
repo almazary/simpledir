@@ -21,7 +21,7 @@ export const POST = withHandler(async (req) => {
   }
 
   const email = parsed.data.email.toLowerCase().trim();
-  const { password } = parsed.data;
+  const { password, name } = parsed.data;
   const db = getDb();
 
   const existing = await db
@@ -37,7 +37,11 @@ export const POST = withHandler(async (req) => {
   const passwordHash = await hashPassword(password);
   const inserted = await db
     .insert(users)
-    .values({ email, passwordHash })
+    .values({
+      email,
+      passwordHash,
+      name: name?.trim() || email.split("@")[0] || null,
+    })
     .returning();
 
   const user = inserted[0];

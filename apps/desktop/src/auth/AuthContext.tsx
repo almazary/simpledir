@@ -7,11 +7,12 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import type { UserPublic } from "@simpledir/shared";
+import type { UpdateProfileInput, UserPublic } from "@simpledir/shared";
 import { api } from "../lib/api";
 import {
   clearSession,
   getAccessToken,
+  getRefreshToken,
   getStoredUser,
   saveSession,
 } from "../lib/session";
@@ -21,6 +22,7 @@ type AuthState = {
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string) => Promise<string>;
+  updateProfile: (input: UpdateProfileInput) => Promise<string>;
   logout: () => Promise<void>;
 };
 
@@ -57,6 +59,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return res.message;
   }, []);
 
+  const updateProfile = useCallback(async (input: UpdateProfileInput) => {
+    const res = await api.updateProfile(input);
+    const refresh = getRefreshToken();
+    const access = getAccessToken();
+    if (access && refresh) {
+      saveSession(access, refresh, res.user);
+    }
+    setUser(res.user);
+    return res.message;
+  }, []);
+
   const logout = useCallback(async () => {
     try {
       await api.logout();
@@ -67,8 +80,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ user, loading, login, register, logout }),
-    [user, loading, login, register, logout],
+    () => ({ user, loading, login, register, updateProfile, logout }),
+    [user, loading, login, register, updateProfile, logout],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

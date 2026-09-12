@@ -2,7 +2,9 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { AuthProvider, useAuth } from "./auth/AuthContext";
 import { BrowserPage } from "./pages/BrowserPage";
 import { CredentialsPage } from "./pages/CredentialsPage";
+import { ForgotPasswordPage } from "./pages/ForgotPasswordPage";
 import { LoginPage } from "./pages/LoginPage";
+import { ProfilePage } from "./pages/ProfilePage";
 import { RegisterPage } from "./pages/RegisterPage";
 
 function Protected({ children }: { children: React.ReactNode }) {
@@ -40,10 +42,26 @@ export default function App() {
           }
         />
         <Route
+          path="/forgot-password"
+          element={
+            <PublicOnly>
+              <ForgotPasswordPage />
+            </PublicOnly>
+          }
+        />
+        <Route
           path="/"
           element={
             <Protected>
               <CredentialsPage />
+            </Protected>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <Protected>
+              <ProfilePage />
             </Protected>
           }
         />

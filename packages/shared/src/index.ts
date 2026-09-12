@@ -3,6 +3,7 @@ import { z } from "zod";
 export const registerSchema = z.object({
   email: z.string().email().max(320),
   password: z.string().min(8).max(128),
+  name: z.string().trim().min(1).max(64).optional(),
 });
 
 export const loginSchema = z.object({
@@ -13,6 +14,37 @@ export const loginSchema = z.object({
 export const verifyEmailSchema = z.object({
   token: z.string().min(10).max(512),
 });
+
+export const forgotPasswordSchema = z.object({
+  email: z.string().email().max(320),
+});
+
+export const resetPasswordSchema = z.object({
+  token: z.string().min(10).max(512),
+  password: z.string().min(8).max(128),
+});
+
+export const updateProfileSchema = z
+  .object({
+    name: z.string().trim().min(1).max(64).optional(),
+    currentPassword: z.string().min(1).max(128).optional(),
+    newPassword: z.string().min(8).max(128).optional(),
+  })
+  .superRefine((v, ctx) => {
+    if (!v.name && !v.newPassword) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Provide a name and/or new password",
+      });
+    }
+    if (v.newPassword && !v.currentPassword) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["currentPassword"],
+        message: "Current password is required to set a new password",
+      });
+    }
+  });
 
 export const refreshSchema = z.object({
   refreshToken: z.string().min(10).max(2048),
@@ -66,6 +98,7 @@ export type LoginInput = z.infer<typeof loginSchema>;
 export type CreateCredentialInput = z.infer<typeof createCredentialSchema>;
 export type UpdateCredentialInput = z.infer<typeof updateCredentialSchema>;
 export type TestCredentialInput = z.infer<typeof testCredentialSchema>;
+export type UpdateProfileInput = z.infer<typeof updateProfileSchema>;
 
 export type R2ConnectionTestResult = {
   ok: true;
@@ -80,6 +113,7 @@ export type R2ConnectionTestResult = {
 export type UserPublic = {
   id: string;
   email: string;
+  name: string | null;
   status: "pending_verification" | "active" | "disabled";
   createdAt: string;
 };

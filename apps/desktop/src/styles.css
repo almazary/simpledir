@@ -54,7 +54,8 @@ button:disabled {
   cursor: not-allowed;
 }
 
-button.ghost {
+button.ghost,
+.button.ghost {
   background: transparent;
 }
 

@@ -6,6 +6,7 @@ import type {
   R2ConnectionTestResult,
   TestCredentialInput,
   UpdateCredentialInput,
+  UpdateProfileInput,
   UserPublic,
 } from "@simpledir/shared";
 import { getApiBaseUrl } from "./config";
@@ -116,6 +117,25 @@ export const api = {
       method: "POST",
       body: JSON.stringify({ email, password }),
     });
+  },
+  forgotPassword(email: string) {
+    return request<{ message: string }>("/api/auth/forgot-password", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+    });
+  },
+  resetPassword(token: string, password: string) {
+    return request<{ message: string }>("/api/auth/reset-password", {
+      method: "POST",
+      body: JSON.stringify({ token, password }),
+    });
+  },
+  updateProfile(input: UpdateProfileInput) {
+    return request<{ user: UserPublic; message: string }>(
+      "/api/me",
+      { method: "PATCH", body: JSON.stringify(input) },
+      true,
+    );
   },
   logout() {
     const refreshToken = getRefreshToken();

@@ -1,15 +1,13 @@
 import { useState, type FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../auth/AuthContext";
+import { Link } from "react-router-dom";
+import { api } from "../lib/api";
 import { getApiBaseUrl, isDevBuild, setApiBaseUrl } from "../lib/config";
 
-export function LoginPage() {
-  const { login } = useAuth();
-  const navigate = useNavigate();
+export function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [apiUrl, setApiUrl] = useState(getApiBaseUrl());
   const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const showApiSettings = isDevBuild();
 
@@ -17,14 +15,13 @@ export function LoginPage() {
     e.preventDefault();
     setBusy(true);
     setError(null);
-    if (showApiSettings) {
-      setApiBaseUrl(apiUrl);
-    }
+    setMessage(null);
+    if (showApiSettings) setApiBaseUrl(apiUrl);
     try {
-      await login(email, password);
-      navigate("/", { replace: true });
+      const res = await api.forgotPassword(email);
+      setMessage(res.message);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Login failed");
+      setError(err instanceof Error ? err.message : "Request failed");
     } finally {
       setBusy(false);
     }
@@ -32,10 +29,13 @@ export function LoginPage() {
 
   return (
     <div className="auth-shell">
-      <form className="card" onSubmit={onSubmit}>
-        <h1>SimpleDir</h1>
-        <p className="muted">Sign in to manage your R2 buckets</p>
+      <form className="card" onSubmit={(e) => void onSubmit(e)}>
+        <h1>Forgot password</h1>
+        <p className="muted">
+          We&apos;ll email you a link to reset your password.
+        </p>
         {error && <div className="banner error">{error}</div>}
+        {message && <div className="banner ok">{message}</div>}
         <label>
           Email
           <input
@@ -44,16 +44,6 @@ export function LoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
           />
         </label>
         {showApiSettings && (
@@ -69,14 +59,11 @@ export function LoginPage() {
             </label>
           </details>
         )}
-        <button type="submit" disabled={busy}>
-          {busy ? "Signing in…" : "Sign in"}
+        <button type="submit" disabled={busy || !!message}>
+          {busy ? "Sending…" : "Send reset link"}
         </button>
         <p className="muted center">
-          <Link to="/forgot-password">Forgot password?</Link>
-        </p>
-        <p className="muted center">
-          No account? <Link to="/register">Register</Link>
+          <Link to="/login">Back to sign in</Link>
         </p>
       </form>
     </div>
